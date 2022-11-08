@@ -8,7 +8,12 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "stylelint": "stylelint --ignore-path .gitignore \"src/**/*.+(css|scss)\"",
+    "stylelintfix": "npm run stylelint -- --fix",
+    "xo": "xo",
+    "xo:fix": "xo --fix",
+    "format": "prettier --write \"**/*.+(js|json|yml|scss|css|json)\""
   },
   "dependencies": {
     "@astrojs/react": "^1.2.2",
@@ -19,6 +24,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "postcss": "^8.4.18",
     "prettier": "^2.7.1",
     "sass": "^1.56.0",
     "stylelint": "^14.14.1",
