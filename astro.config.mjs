@@ -1,4 +1,5 @@
-import { defineConfig } from 'astro/config.mjs';
+// eslint-disable-next-line n/file-extension-in-import
+import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 import react from "@astrojs/react";
