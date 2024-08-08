@@ -25,6 +25,7 @@
 
 //       if (this.animation) {
 //         this.animation.kill();
+//         this.animation = null;
 //       }
 //     },
 //   }));
@@ -94,6 +95,7 @@ document.addEventListener('alpine:init', () => {
       console.log('Alpine component destroyed');
       if (this.animation) {
         this.animation.kill();
+        this.animation = null;
       }
     },
   }));
