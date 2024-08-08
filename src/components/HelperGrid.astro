@@ -1,0 +1,31 @@
+---
+// 60分割のグリッドラインを描画
+const items = Array.from({ length: 60 }, (_, i) => i + 1);
+---
+
+<div class="helper-grid-area js-helper-grid-area is-invisible">
+  {items.map(() => <div class="helper-grid-lines js-helper-grid-lines" />)}
+</div>
+
+<style>
+  .helper-grid-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    &.is-invisible {
+      display: none;
+    }
+  }
+
+  .helper-grid-area .helper-grid-lines {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: aqua;
+  }
+</style>

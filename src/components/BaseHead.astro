@@ -1,0 +1,46 @@
+---
+/**
+ * @description HEAD
+ */
+
+import { GoogleFontsOptimizer } from 'astro-google-fonts-optimizer';
+
+import * as Variables from '@/variables.astro';
+
+const currentHref = Astro.url.href;
+const currentOrigin = Astro.url.origin;
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'astro-static-template title', description = 'astro-static-template description' } = Astro.props;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="icon" href={Variables.URL_FAVICON} />
+  <link rel="apple-touch-icon-precomposed" href={Variables.URL_TOUCH_ICON} />
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title} />
+  <meta name="description" content={description} />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:site_name" content={title} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={currentHref} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${currentOrigin}${Variables.URL_OGP}`} />
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={currentHref} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={`${currentOrigin}${Variables.URL_OGP}`} />
+  <!-- Google Font -->
+  <GoogleFontsOptimizer url="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" />
+</head>

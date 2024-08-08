@@ -1,0 +1,120 @@
+---
+import BaseHead from '@/components/BaseHead.astro';
+import BaseHook from '@/components/BaseHook.astro';
+import HelperGrid from '@/components/HelperGrid.astro';
+
+import * as Variables from '@/variables.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="jp">
+  <BaseHead title={title} description={description} />
+  <body>
+    {Variables.IS_DEV && <HelperGrid gridNum="60" />}
+    <slot />
+    <BaseHook />
+    {
+      /*
+       * For some reason,without this comment here prettier forces incorrect formatting.
+       * See https://github.com/withastro/prettier-plugin-astro/issues/316
+       */
+    }
+    <script src="../script/test.ts"></script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
+  }
+
+  html {
+    font-family: system-ui, sans-serif;
+    background: #13151a;
+    background-size: 224px;
+    scroll-behavior: initial;
+
+    --base-vw: 375;
+  }
+
+  body {
+    position: relative;
+    min-height: 100%;
+    overflow-x: hidden;
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    font-size: 0.9375rem;
+    font-feature-settings: 'palt';
+    line-height: 1;
+    letter-spacing: 0.1em;
+    word-break: normal;
+    overflow-wrap: anywhere;
+    line-break: strict;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline-style: double;
+    outline-color: #ffd34e;
+  }
+
+  main[tabindex='-1'] {
+    outline: none;
+  }
+
+  /* lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  html.is-changing .transition-main {
+    transition: opacity 250ms ease-in-out;
+  }
+
+  html.is-animating .transition-main {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  if (typeof window !== 'undefined') {
+    window.history.scrollRestoration = 'manual';
+  }
+</script>
