@@ -36,75 +36,7 @@ import Layout from '../layouts/Layout.astro';
       <Card href="https://astro.build/chat/" title="Community" body="Come say hi to our amazing Discord community. ❤️" />
     </ul>
     <div class="mx-auto mb-10 mt-6 max-w-fit">
-      <Button intent="primary" size="small" as="a" href="/test">小さな二次ボタン</Button>
+      <Button intent="primary" size="small" as="a" href="/test">トップボタン</Button>
     </div>
   </main>
 </Layout>
-
-<!-- <script>
-  import { gsap } from 'gsap';
-
-  import { setupSwup } from '@/lib/swupSetup';
-
-  gsap.config({
-    nullTargetWarn: false,
-  });
-
-  const focusSection = () => {
-    const targetScale = gsap.utils.toArray<HTMLElement>('.js-test-scale');
-    const targetFade = gsap.utils.toArray<HTMLElement>('.js-test-fade');
-    const targetMove = gsap.utils.toArray<HTMLElement>('.js-test-move');
-
-    if (targetScale.length) {
-      targetScale.forEach((parent: HTMLElement) => {
-        const children = gsap.utils.toArray<HTMLElement>(parent.children);
-        gsap.set(children, { scale: 0.4, opacity: 0 });
-        gsap.to(children, {
-          scale: 1,
-          opacity: 1,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: {
-            amount: 1,
-            ease: 'none',
-          },
-        });
-      });
-    }
-
-    if (targetFade.length) {
-      gsap.set(targetFade, { opacity: 0 });
-      gsap.to(targetFade, {
-        opacity: 1,
-        duration: 1.5,
-        ease: 'power1.inOut',
-        stagger: 0.2,
-      });
-    }
-
-    if (targetMove.length) {
-      gsap.set(targetMove, { x: -100, opacity: 0 });
-      gsap.to(targetMove, {
-        x: 0,
-        opacity: 1,
-        duration: 1,
-        ease: 'back.out(1.7)',
-        stagger: 0.3,
-      });
-    }
-  };
-
-  const cleanUp = () => {
-    if (typeof gsap !== 'undefined') {
-      gsap.killTweensOf('.js-test-scale, .js-test-scale *');
-      gsap.killTweensOf('.js-test-fade');
-      gsap.killTweensOf('.js-test-move');
-    }
-  };
-
-  // ページロード時に即時実行
-  focusSection();
-
-  // Swupによるページ遷移時に実行
-  setupSwup(focusSection, cleanUp);
-</script> -->

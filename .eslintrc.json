@@ -39,7 +39,7 @@
     "tailwindcss": {
       "config": "./tailwind.config.ts",
       "groupByResponsive": true,
-      "whitelist": ["helper-grid-area", "is-invisible", "helper-grid-lines", ["^js-.*"]]
+      "whitelist": ["helper-grid-area", "is-invisible", "helper-grid-lines", ["^js-.*"], ["^transition-.*"]]
     }
   },
   "overrides": [
