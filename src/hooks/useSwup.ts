@@ -29,11 +29,7 @@ import SwupScrollPlugin from '@swup/scroll-plugin';
 import gsap from 'gsap';
 import Swup from 'swup';
 
-import { useLenis } from '@/hooks/useLenis';
-
 export const useSwup = (): void => {
-  const lenis = useLenis();
-
   new Swup({
     plugins: [
       new SwupHeadPlugin(),
@@ -98,15 +94,9 @@ export const useSwup = (): void => {
             from: '(.*)',
             to: '(.*)',
             out: async () => {
-              if (lenis) {
-                lenis.stop();
-              }
               await gsap.to('#swup', { opacity: 0, duration: 0.25, ease: 'power1.inOut' });
             },
             in: async () => {
-              if (lenis) {
-                lenis.start();
-              }
               await gsap.fromTo('#swup', { opacity: 0 }, { opacity: 1, duration: 1.25, ease: 'power1.inOut' });
             },
           },
