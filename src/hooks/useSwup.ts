@@ -118,6 +118,7 @@ export const useSwup = (): void => {
   });
 };
 
+//TODO hook sample
 // import SwupHeadPlugin from '@swup/head-plugin';
 // import SwupJsPlugin from '@swup/js-plugin';
 // import SwupPreloadPlugin from '@swup/preload-plugin';
@@ -173,5 +174,58 @@ export const useSwup = (): void => {
 //   // ページ遷移完了時にスタイルを削除
 //   swup.hooks.on('animation:in:end', () => {
 //     document.body.style.scrollbarGutter = ''; // 必要に応じて 'auto' や 'initial' を設定
+//   });
+// };
+
+//TODO animation timing
+// import SwupHeadPlugin from '@swup/head-plugin';
+// import SwupJsPlugin from '@swup/js-plugin';
+// import SwupPreloadPlugin from '@swup/preload-plugin';
+// import SwupScrollPlugin from '@swup/scroll-plugin';
+// import gsap from 'gsap';
+// import Swup from 'swup';
+
+// import { useLenis } from '@/hooks/useLenis';
+
+// export const useSwup = (): void => {
+//   const lenis = useLenis();
+
+//   new Swup({
+//     plugins: [
+//       new SwupHeadPlugin(),
+//       new SwupPreloadPlugin(),
+//       new SwupScrollPlugin({
+//         animateScroll: {
+//           betweenPages: false,
+//           samePageWithHash: true,
+//           samePage: true,
+//         },
+//       }),
+//       new SwupJsPlugin({
+//         animations: [
+//           {
+//             from: '(.*)',
+//             to: '(.*)',
+//             out: async () => {
+//               if (lenis) {
+//                 lenis.stop();
+//               }
+//               window.isSwupAnimating = true;
+//               await gsap.to('#swup', { opacity: 0, duration: 0.25, ease: 'power1.inOut' });
+//             },
+//             in: async () => {
+//               if (lenis) {
+//                 lenis.start();
+//               }
+//               await gsap.fromTo('#swup', { opacity: 0 }, { opacity: 1, duration: 1.25, ease: 'power1.inOut' });
+//               window.isSwupAnimating = false;
+//               window.dispatchEvent(new CustomEvent('swup:animation:finished'));
+//             },
+//           },
+//         ],
+//       }),
+//     ],
+//     // containers: ['#swup'],
+//     animateHistoryBrowsing: true,
 //   });
 // };
