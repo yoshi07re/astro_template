@@ -44,9 +44,10 @@ document.addEventListener('alpine:init', () => {
       console.log('Alpine component initialized');
       const target = document.querySelectorAll('.js-test');
       if (target.length) {
-        gsap.set(target, { scale: 0.4 });
+        gsap.set(target, { opacity: 0, scale: 0.4 });
         this.animation = gsap.to(target, {
           scale: 1,
+          opacity: 1,
           duration: 1,
           ease: 'power2.out',
         });

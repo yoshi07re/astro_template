@@ -3,12 +3,13 @@ interface Props {
   title: string;
   body: string;
   href: string;
+  style?: string;
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, style } = Astro.props;
 ---
 
-<li class="flex list-none rounded-lg bg-[#23262d] p-px shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] transition-[background-position] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[image:var(--accent-gradient)] hover:bg-[length:400%] hover:bg-[position:0]">
+<li class="flex list-none rounded-lg bg-[#23262d] p-px shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] transition-[background-position] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[image:var(--accent-gradient)] hover:bg-[length:400%] hover:bg-[position:0]" style={style}>
   <a href={href} class="w-full rounded-lg bg-[#23262d] p-[calc(1.5rem-1px)] leading-[1.4] text-white no-underline opacity-80">
     <h2 class="m-0 text-xl transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:text-[rgb(var(--accent-light))]">
       {title}
