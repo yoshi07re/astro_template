@@ -26,6 +26,9 @@ importers:
       '@swup/head-plugin':
         specifier: ^2.2.0
         version: 2.2.0(swup@4.7.0)
+      '@swup/js-plugin':
+        specifier: ^3.2.0
+        version: 3.2.0(swup@4.7.0)
       '@swup/preload-plugin':
         specifier: ^3.2.10
         version: 3.2.10(swup@4.7.0)
@@ -794,6 +797,11 @@ packages:
 
   '@swup/head-plugin@2.2.0':
     resolution: {integrity: sha512-8/p86H6Ypu+peAAnRZEugOdot3IHhWRMoP/19f9ZEOqErDnIpSWHOkiTI/dWAcHZ6Gbia67fu67cgD2Rag1eKQ==}
+    peerDependencies:
+      swup: ^4.6.0
+
+  '@swup/js-plugin@3.2.0':
+    resolution: {integrity: sha512-lWqQqFEBs+ndEvBdyyGLrS+WQqLiPfX6aHzoCa6cxps8hSU3KK0/uXU/F6urMjMh7PHbJ7slaJe2acEqX9SDvw==}
     peerDependencies:
       swup: ^4.6.0
 
@@ -4049,6 +4057,11 @@ snapshots:
       '@types/hast': 3.0.4
 
   '@swup/head-plugin@2.2.0(swup@4.7.0)':
+    dependencies:
+      '@swup/plugin': 4.0.0
+      swup: 4.7.0
+
+  '@swup/js-plugin@3.2.0(swup@4.7.0)':
     dependencies:
       '@swup/plugin': 4.0.0
       swup: 4.7.0
