@@ -20,6 +20,7 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "@swup/head-plugin": "^2.2.0",
+    "@swup/js-plugin": "^3.2.0",
     "@swup/preload-plugin": "^3.2.10",
     "@swup/scripts-plugin": "^2.1.0",
     "@swup/scroll-plugin": "^3.3.2",

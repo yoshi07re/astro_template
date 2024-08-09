@@ -1,32 +1,13 @@
-import SwupHeadPlugin from '@swup/head-plugin';
-import SwupScrollPlugin from '@swup/scroll-plugin';
-import Swup from 'swup';
-
-export const useSwup = (): void => {
-  new Swup({
-    plugins: [
-      new SwupHeadPlugin(),
-      new SwupScrollPlugin({
-        animateScroll: {
-          betweenPages: false,
-          samePageWithHash: true,
-          samePage: true,
-        },
-      }),
-    ],
-    containers: ['#swup'],
-    animateHistoryBrowsing: true,
-  });
-};
-
 // import SwupHeadPlugin from '@swup/head-plugin';
+// import SwupPreloadPlugin from '@swup/preload-plugin';
 // import SwupScrollPlugin from '@swup/scroll-plugin';
 // import Swup from 'swup';
 
 // export const useSwup = (): void => {
-//   const swup = new Swup({
+//   new Swup({
 //     plugins: [
 //       new SwupHeadPlugin(),
+//       new SwupPreloadPlugin(),
 //       new SwupScrollPlugin({
 //         animateScroll: {
 //           betweenPages: false,
@@ -38,25 +19,91 @@ export const useSwup = (): void => {
 //     containers: ['#swup'],
 //     animateHistoryBrowsing: true,
 //   });
-
-//   if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
-//     window.history.scrollRestoration = 'manual';
-//   }
-
-//   // スクロール位置を保存するオブジェクト
-//   const scrollValues: { [key: string]: number } = {};
-
-//   // イベントリスナーの追加
-//   swup.hooks.on('link:click', () => {
-//     scrollValues[window.location.href] = window.scrollY;
-//     console.log(`Saved scroll position: ${window.scrollY} for URL: ${window.location.href}`);
-//   });
-
-//   swup.hooks.on('animation:out:end', () => {
-//     // setTimeout(() => {
-//     //   window.scrollTo(0, scrollValues[window.location.href] || 0);
-//     // }, 1000);
-//     window.scrollTo(0, scrollValues[window.location.href] || 0);
-//     console.log(`Restoring scroll position: ${scrollValues[window.location.href] || 0} for URL: ${window.location.href}`);
-//   });
 // };
+
+//TODO if gsap animation
+import SwupHeadPlugin from '@swup/head-plugin';
+import SwupJsPlugin from '@swup/js-plugin';
+import SwupPreloadPlugin from '@swup/preload-plugin';
+import SwupScrollPlugin from '@swup/scroll-plugin';
+import gsap from 'gsap';
+import Swup from 'swup';
+
+export const useSwup = (): void => {
+  new Swup({
+    plugins: [
+      new SwupHeadPlugin(),
+      new SwupPreloadPlugin(),
+      new SwupScrollPlugin({
+        animateScroll: {
+          betweenPages: false,
+          samePageWithHash: true,
+          samePage: true,
+        },
+      }),
+      new SwupJsPlugin({
+        // overlay svg path animation
+        // animations: [
+        //   {
+        //     from: '(.*)',
+        //     to: '(.*)',
+        //     out: async () => {
+        //       await gsap
+        //         .timeline()
+        //         .set('.js-overlayPath', {
+        //           // 初めにアニメーションするパス（透明なパス）
+        //           attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' },
+        //         })
+        //         // 扇型を黒く塗りつぶしたパス
+        //         .to('.js-overlayPath', {
+        //           duration: 0.5,
+        //           ease: 'power4.in',
+        //           attr: { d: 'M 0 100 V 50 Q 50 0 100 50 V 100 z' },
+        //         })
+        //         // 真っ黒なパス
+        //         .to('.js-overlayPath', {
+        //           duration: 0.3,
+        //           ease: 'power2',
+        //           attr: { d: 'M 0 100 V 0 Q 50 0 100 0 V 100 z' },
+        //         });
+        //     },
+        //     in: async () => {
+        //       await gsap
+        //         .timeline()
+        //         // 真っ黒なパス
+        //         .set('.js-overlayPath', {
+        //           attr: { d: 'M 0 0 V 100 Q 50 100 100 100 V 0 z' },
+        //         })
+        //         // 扇型の余白部分を黒く塗りつぶしたパス
+        //         .to('.js-overlayPath', {
+        //           duration: 0.3,
+        //           ease: 'power2.in',
+        //           attr: { d: 'M 0 0 V 50 Q 50 0 100 50 V 0 z' },
+        //         })
+        //         // 透明なパス
+        //         .to('.js-overlayPath', {
+        //           duration: 0.5,
+        //           ease: 'power4',
+        //           attr: { d: 'M 0 0 V 0 Q 50 0 100 0 V 0 z' },
+        //         });
+        //     },
+        //   },
+        // ],
+        animations: [
+          {
+            from: '(.*)',
+            to: '(.*)',
+            out: async () => {
+              await gsap.to('#swup', { opacity: 0, duration: 0.25, ease: 'power1.inOut' });
+            },
+            in: async () => {
+              await gsap.fromTo('#swup', { opacity: 0 }, { opacity: 1, duration: 1.25, ease: 'power1.inOut' });
+            },
+          },
+        ],
+      }),
+    ],
+    // containers: ['#swup'],
+    animateHistoryBrowsing: true,
+  });
+};
